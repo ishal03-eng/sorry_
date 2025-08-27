@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorry Palku ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+      padding: 10px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 100%;
+      max-width: 350px;
+    }
+    h1 {
+      color: #ff4d6d;
+      font-size: 1.5em;
+    }
+    p {
+      font-size: 1em;
+      color: #444;
+    }
+    button {
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+      max-width: 250px;
+    }
+    button:hover {
+      background: #e63950;
+    }
+    .hidden {
+      display: none;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      text-align: center;
+      transition: transform 0.4s ease-in-out;
+      width: 90%;
+      max-width: 350px;
+      z-index: 10;
+    }
+    .popup.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .popup p {
+      font-size: 0.95em;
+      line-height: 1.4em;
+    }
+    .hearts {
+      position: absolute;
+      font-size: 18px;
+      animation: float 5s infinite;
+      color: #ff4d6d;
+      z-index: 0;
+    }
+    @keyframes float {
+      from { transform: translateY(100vh) scale(1); opacity: 1; }
+      to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+    /* Surprise message */
+    .surprise {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.95);
+      padding: 15px 20px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      font-size: 1em;
+      font-weight: bold;
+      color: #e63950;
+      animation: fadeIn 1s ease-in-out;
+      max-width: 90%;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hey Palku ❤️</h1>
+    <p>I’m really sorry that I couldn’t give you enough time…</p>
+    <button onclick="showPopup()">Click for My Apology</button>
+  </div>
+
+  <div class="popup hidden" id="popup">
+    <h2>Sorry My Love ❤️</h2>
+    <p>Palku, I know I couldn’t give you time…  
+       But trust me, you’re always in my heart.  
+       Please forgive me. – Vishal 💕</p>
+    <button onclick="closePopup()">Forgive Me ❤️</button>
+  </div>
+
+  <!-- Surprise hidden initially -->
+  <div class="hidden" id="surprise">
+    💖 Thank you for forgiving me, Palku!  
+    You’re my forever & always. 💖  
+  </div>
+
+  <script>
+    function showPopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.remove("hidden");
+      setTimeout(() => {
+        popup.classList.add("show");
+      }, 50);
+
+      // Floating hearts
+      for (let i = 0; i < 10; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("hearts");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
+    }
+
+    function closePopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.remove("show");
+      setTimeout(() => {
+        popup.classList.add("hidden");
+        // Reveal the hidden surprise
+        document.getElementById("surprise").classList.remove("hidden");
+        document.getElementById("surprise").classList.add("surprise");
+      }, 400);
+    }
+  </script>
+</body>
+</html>
